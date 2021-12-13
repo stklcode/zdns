@@ -57,7 +57,7 @@ func (s *Cache) AddCachedAnswer(answer interface{}, depth int, threadID int) {
 	s.IterativeCache.Lock(q)
 	// don't bother to move this to the top of the linked list. we're going
 	// to add this record back in momentarily and that will take care of this
-	i, ok := s.IterativeCache.GetNoMove(q)
+	i, _ := s.IterativeCache.GetNoMove(q)
 	ca, ok := i.(CachedResult)
 	if !ok && i != nil {
 		panic("unable to cast cached result")

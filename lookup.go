@@ -142,7 +142,7 @@ func doLookup(g GlobalLookupFactory, gc *GlobalConf, input <-chan interface{}, o
 				Groups:     gc.OutputGroups,
 				ApiVersion: v,
 			}
-			data, err := sheriff.Marshal(o, res)
+			data, _ := sheriff.Marshal(o, res)
 			jsonRes, err := json.Marshal(data)
 			if err != nil {
 				log.Fatal("Unable to marshal JSON result", err)

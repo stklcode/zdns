@@ -36,6 +36,9 @@ func TestParseAnswer(t *testing.T) {
 		AAAA: net.ParseIP("2001:db8::1"),
 	}
 
+	res = ParseAnswer(rr)
+	verifyResult(t, res, rr, "2001:db8::1")
+
 	// loopback AAAA record
 	rr = &dns.AAAA{
 		Hdr: dns.RR_Header{
@@ -47,6 +50,9 @@ func TestParseAnswer(t *testing.T) {
 		},
 		AAAA: net.ParseIP("::1"),
 	}
+
+	res = ParseAnswer(rr)
+	verifyResult(t, res, rr, "::1")
 
 	// unspecified AAAA record
 	rr = &dns.AAAA{

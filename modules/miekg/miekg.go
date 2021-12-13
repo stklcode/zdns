@@ -364,7 +364,7 @@ func (s *Lookup) cachedRetryingLookup(q Question, nameServer, layer string, dept
 		return cachedResult, isCached, zdns.STATUS_NOERROR, nil
 	}
 
-	nameServerIP, _, err := net.SplitHostPort(nameServer)
+	nameServerIP, _, _ := net.SplitHostPort(nameServer)
 	// Stop if we hit a nameserver we don't want to hit
 	if s.Factory.Factory.Blacklist != nil {
 		s.Factory.Factory.BlMu.Lock()

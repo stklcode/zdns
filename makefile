@@ -1,10 +1,20 @@
+# Determine version from git root, if available and VERSION is not already defined
+VERSION ?= $(shell \
+  sh -c 'command -v git >/dev/null 2>&1 && \
+  [ "$$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ] && \
+  [ -z "$$(git rev-parse --show-prefix 2>/dev/null)" ] && \
+  ver=$$(git describe --tags 2>/dev/null || git rev-parse --short HEAD 2>/dev/null) || ver=dev; \
+  echo $${ver#v}' \
+)
+
+
 all: zdns
 
 generate:
 	go generate ./...
 
 zdns: generate
-	go build -o zdns
+	go build -o zdns -ldflags "-X github.com/zmap/zdns/v2/src/zdns.Version=$(VERSION)"
 
 clean:
 	rm -f zdns

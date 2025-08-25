@@ -35,13 +35,7 @@ func (c *ShardedCacheHash) Init(maxLen int, shards int) {
 
 func (c *ShardedCacheHash) getShardID(k interface{}) int {
 	kb := []byte(fmt.Sprintf("%v", k))
-	hash := int(crc32.ChecksumIEEE(kb))
-	// crc32 returns a 32-bit unsigned integer. On 32-bit systems, this int cast can return negative values.
-	// To ensure we always have 0 <= shard ID < shardsLen, we take the absolute value of the hash.
-	if hash < 0 {
-		hash = -hash
-	}
-	return hash % c.shardsLen
+	return int(crc32.ChecksumIEEE(kb)) % c.shardsLen
 }
 
 func (c *ShardedCacheHash) getShard(k interface{}) *CacheHash {

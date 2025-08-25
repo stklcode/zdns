@@ -792,7 +792,7 @@ func makeName(name, prefix, nameOverride string) (string, bool) {
 
 func aggregateMetadata(c <-chan routineMetadata) Metadata {
 	var meta Metadata
-	meta.ZDNSVersion = zdns.ZDNSVersion
+	meta.ZDNSVersion = zdns.Version
 	meta.Status = make(map[string]int)
 	for m := range c {
 		meta.Names += m.Names

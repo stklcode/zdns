@@ -204,7 +204,7 @@ func parseArgs() {
 	parser.Options = flags.Default ^ flags.PrintErrors // we'll print errors in the 2nd invocation, otherwise we get the error printed twice
 	_, _, _, _ = parser.ParseCommandLine(os.Args[1:])
 	if GC.Version {
-		fmt.Printf("zdns version %s", zdns.ZDNSVersion)
+		fmt.Printf("zdns version %s", zdns.Version)
 		fmt.Println()
 		os.Exit(0)
 	}

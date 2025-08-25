@@ -536,7 +536,7 @@ func (r *Resolver) getConnectionInfo(nameServer *NameServer) (*ConnectionInfo, e
 	if r.dnsOverHTTPSEnabled {
 		// Create a http.Client with the custom transport
 		connInfo.httpsClient = &http.Client{
-			UserAgent: "zdns/" + ZDNSVersion,
+			UserAgent: "zdns/" + Version,
 			Transport: &http.Transport{
 				DialTLS: func(network, addr string) (net.Conn, error) {
 					localTCPAddr := &net.TCPAddr{
